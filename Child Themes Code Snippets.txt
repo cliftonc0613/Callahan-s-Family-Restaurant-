@@ -1,0 +1,776 @@
+Code Snippets for Building Child Themes in WordPress
+by Morten Rand-Hendriksen
+
+-----------------------------------------------------------------------
+1.3
+-----------------------------------------------------------------------
+
+/*
+Theme Name: The New Cool
+Theme URI: URI to your theme
+Description: Twentyten child-theme with seriously good looks
+Author: Your name and a link to your site
+Version: 0.0.1
+Template: twentyten
+Tags: two-columns, right-sidebar, custom-header, custom-colors, custom-background, custom-menu, theme-options, threaded-comments, sticky-post, translation-ready, microformats, rtl-language-support, editor-style
+*/
+
+
+
+-----------------------------------------------------------------------
+1.4
+-----------------------------------------------------------------------
+
+/* Imports all styles from the TwentyTen stylesheet */
+@import url('../twentyten/style.css');
+
+
+
+-----------------------------------------------------------------------
+2.2
+-----------------------------------------------------------------------
+
+/* Changes the width of the header and shifts it 20px to the left */
+#header {
+	padding: 0;
+	margin: 0 0 0 -20px;
+	background: #fff;
+	width: 980px;
+}
+
+/* Sets the width of the header content */
+#branding {
+	width: 980px;
+}
+
+/* Positions the branding image */
+#branding img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-top: none;
+	border-bottom: none;
+	float: none;
+	z-index: 0;
+}
+
+/* Gives the branding image a reference to position based on and sets the overall height */
+#masthead {
+	position: relative;
+	height: 310px;
+}
+
+/* Lifts the site title to the top and changes its position and appearance */
+#site-title {
+	position: absolute;
+	margin: 0;
+	float:none;
+	top: 170px;
+	left: 20px;
+	font-size: 40px;
+	z-index: 10;
+}
+
+/* Lifts the site description to the top and changes its position and appearance */
+#site-description {
+	float: none;
+	font-style: normal;
+	margin: 0;
+	position: absolute;
+	color: #ffffff;
+	text-transform: uppercase;
+	top: 150px;
+	left: 20px;
+	width: 100%;
+	z-index: 10;
+}
+
+/* Repositions and restyles the menu as a whole */
+#access {
+	background: #ffffff;
+	margin: 5px auto 0 auto;
+	width: 980px;
+	position: absolute;
+	bottom: 0px;
+	height: 86px;
+	border-top: 1px #ffffff solid;
+	border-bottom: 1px #ffffff solid;
+}
+
+/* Realigns the menu by negating styles from TwentyTen */
+#access .menu-header,
+div.menu {
+	font-size: 13px;
+	margin-left: 0px;
+	width: 978px;
+}
+
+/* Changes the size and appearance of each individual menu item */
+#access a {
+	line-height: 1.3em;
+	padding: 14px 20px;
+	width: 123px;
+	height: 58px;
+	font-size: 1.1em;
+	text-transform: uppercase;
+	color: #333333;
+	font-weight: bold;
+}
+
+
+
+/* **************** */
+/* OPTIONAL CONTENT */
+/* **************** */
+
+/* Changes the appearance of the menu item for the currently open page */
+#access ul li.current_page_item > a,
+#access ul li.current-menu-ancestor > a,
+#access ul li.current-menu-item > a,
+#access ul li.current-menu-parent > a {
+	color: #fff;
+	background: #358aa9;
+}
+
+/* Changes the hover state of the menu items */
+#access li:hover > a,
+#access ul ul :hover > a,
+#access li:hover > a span,
+#access ul ul :hover > a span {
+	background: #358aa9;
+	color: white;
+}
+
+/* Changes the colour of the description text when on the current page */
+#access ul li.current_page_item > a span,
+#access ul li.current-menu-ancestor > a span,
+#access ul li.current-menu-item > a span,
+#access ul li.current-menu-parent > a span {
+	color: #fff;
+}
+
+/* Changes the position and width of the sub-menu list */
+#access ul ul {
+	top: 86px;
+	left: 0;
+	width: 123px;
+}
+
+/* Changes the width of each sub-menu item */
+#access ul ul li {
+	min-width: 123px;
+}
+
+/* Changes the colour and padding of the sub-menu items */
+#access ul ul a {
+	background: #4da9ca;
+	color: #fff;
+	padding: 10px 20px;
+	width: 123px;
+}
+
+/* ******************** */
+/* END OPTIONAL CONTENT */
+/* ******************** */
+
+
+
+-----------------------------------------------------------------------
+2.3
+-----------------------------------------------------------------------
+
+define( 'HEADER_IMAGE_WIDTH', apply_filters( 'twentyten_header_image_width', 980 ) );
+define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'twentyten_header_image_height', 224 ) );
+	
+
+	
+-----------------------------------------------------------------------
+3.1
+-----------------------------------------------------------------------
+
+<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+
+</a>
+
+
+
+-----------------------------------------------------------------------
+3.2
+-----------------------------------------------------------------------
+
+For testing:
+<?php if (is_page()) { echo "This is a page"; } else { echo "This is not a page";} ?>
+
+The actual query:
+( is_page() && is_singular() && current_theme_supports( 'post-thumbnails' )
+
+
+
+-----------------------------------------------------------------------
+3.3
+-----------------------------------------------------------------------
+
+// For testing:
+function remove_twentyTen_headers() {
+	unregister_default_headers( 
+	'berries'
+	);
+}
+
+add_action('after_setup_theme', 'remove_twentyTen_headers', 11);
+
+// Remove all:
+function remove_twentyTen_headers() {
+	unregister_default_headers( array(
+	'berries',
+	'cherryblossom',
+	'concave',
+	'fern',
+	'forestfloor',
+	'inkwell',
+	'path',
+	'sunset'	
+	));
+}
+
+// Add new default header image
+register_default_headers( 
+	array(
+		'TheNewCool' => array(
+			'url' => "%s/../thenewcool/images/HPmainGeneric.png",
+			'thumbnail_url' => "%s/../thenewcool/images/HPmainGenericThumb.png",
+			/* translators: header image description */
+			'description' => __( 'The New Cool Header', 'twentyten' )
+		)
+	) 
+);
+
+
+
+-----------------------------------------------------------------------
+4.1
+-----------------------------------------------------------------------
+
+// This theme uses wp_nav_menu() in two locations.
+register_nav_menus( array(
+	'header' => __( 'Header Navigation', 'twentyten' ),
+	'footer' => __( 'Footer Navigation', 'twentyten' ),
+) );
+	
+// Remove the default menu function
+function tnc_remove_default_menu() {
+	unregister_nav_menu( 'primary' );
+}
+
+add_action('after_setup_theme', 'tnc_remove_default_menu', 11);
+
+
+
+-----------------------------------------------------------------------
+4.2
+-----------------------------------------------------------------------
+
+Based on theme location:
+<?php wp_nav_menu( array( 'container_class' => 'menu-footer', 'theme_location' => 'footer' ) ); ?>
+
+Based on name:
+<?php wp_nav_menu( array( 'container_class' => 'menu-footer', 'menu' => 'Footer Menu' ) ); ?>
+
+<div id="footerMenu">
+	<?php wp_nav_menu( array( 'container_class' => 'menu-footer', 'theme_location' => 'footer' ) ); ?>
+</div>
+
+
+
+-----------------------------------------------------------------------
+5.1
+-----------------------------------------------------------------------
+
+Test with text:
+<li id="permanent">
+	This is some permanent text
+</li>
+
+Permanent image with link to Twitter account
+<div id="fixed" class="widget-area">
+	<ul class="xoxo">
+		<li id="permanent">
+			<a href="http://www.twitter.com/mor10" title="Mor10 on Twitter" target="_blank"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/HPonTwitter.png" alt="Hansel &amp; Petal on Twitter" target="_blank"/></a>
+		</li>	
+	</ul>
+</div>
+
+
+
+-----------------------------------------------------------------------
+5.2
+-----------------------------------------------------------------------
+
+// Remove parent theme widgets by calling unregister_sidebar() 
+function tnc_remove_widgets(){
+
+	unregister_sidebar( 'fourth-footer-widget-area' );
+}
+
+add_action( 'widgets_init', 'tnc_remove_widgets', 11 );
+
+
+// Register new widgetized areas
+function tnc_widgets_init() {
+
+( register_sidebar() goes here )
+
+}
+/** Register sidebars by running twentyten_widgets_init() on the widgets_init hook. */
+add_action( 'widgets_init', 'tnc_widgets_init' );
+
+// Two new widgetized areas
+	// Area 1a, below Area 1 to the left.
+	register_sidebar( array(
+		'name' => __( 'Left Widget Area', 'twentyten' ),
+		'id' => 'left-widget-area',
+		'description' => __( 'Left widget area', 'twentyten' ),
+		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	// Area 1b, below Area 1 to the right.
+	register_sidebar( array(
+		'name' => __( 'Right Widget Area', 'twentyten' ),
+		'id' => 'right-widget-area',
+		'description' => __( 'Right widget area', 'twentyten' ),
+		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+
+	
+
+-----------------------------------------------------------------------
+5.3
+-----------------------------------------------------------------------
+
+Create two new widgetized areas:
+<div id="leftRight">
+<?php
+	// Left widget area
+?>
+
+		<div id="leftWidgets" class="widget-area" role="complementary">
+			<ul class="xoxo">
+				<?php dynamic_sidebar( 'left-widget-area' ); ?>
+			</ul>
+		</div><!-- #leftWidgets .widget-area -->
+
+
+<?php
+	// Right widget area
+?>
+
+		<div id="rightWidgets" class="widget-area" role="complementary">
+			<ul class="xoxo">
+				<?php dynamic_sidebar( 'right-widget-area' ); ?>
+			</ul>
+		</div><!-- #rightWidgets .widget-area -->
+
+
+</div><!-- END #leftRight -->
+
+
+Make them conditional:
+<?php
+	// Left widget area
+?>
+
+		<div id="leftWidgets" class="widget-area" role="complementary">
+			<ul class="xoxo">
+				<?php if ( ! dynamic_sidebar( 'left-widget-area' ) ) : ?>
+					Default content left
+				<?php endif; // end primary widget area ?>
+			</ul>
+		</div><!-- #leftWidgets .widget-area -->
+
+<?php
+	// Right widget area
+?>
+
+		<div id="rightWidgets" class="widget-area" role="complementary">
+			<ul class="xoxo">
+				<?php if ( ! dynamic_sidebar( 'right-widget-area' ) ) : ?>
+					Default content right
+				<?php endif; ?>
+			</ul>
+		</div><!-- #rightWidgets .widget-area -->
+
+
+Final code:
+<div id="leftRight">
+<?php
+	// Left widget area
+?>
+
+		<div id="leftWidgets" class="widget-area" role="complementary">
+			<ul class="xoxo">
+				<?php if ( ! dynamic_sidebar( 'left-widget-area' ) ) : ?>
+					<li id="archives" class="widget-container">
+						<h3 class="widget-title"><?php _e( 'Archives', 'twentyten' ); ?></h3>
+						<ul>
+							<?php wp_get_archives( 'type=monthly' ); ?>
+						</ul>
+					</li>
+				<?php endif; // end primary widget area ?>
+			</ul>
+		</div><!-- #leftWidgets .widget-area -->
+
+<?php
+	// Right widget area
+?>
+
+		<div id="rightWidgets" class="widget-area" role="complementary">
+			<ul class="xoxo">
+				<?php if ( ! dynamic_sidebar( 'right-widget-area' ) ) : ?>
+					<li id="meta" class="widget-container">
+						<h3 class="widget-title"><?php _e( 'Meta', 'twentyten' ); ?></h3>
+						<ul>
+							<?php wp_register(); ?>
+							<li><?php wp_loginout(); ?></li>
+							<?php wp_meta(); ?>
+						</ul>
+					</li>
+				<?php endif; ?>
+			</ul>
+		</div><!-- #rightWidgets .widget-area -->
+</div><!-- END #leftRight -->
+
+
+
+-----------------------------------------------------------------------
+5.4
+-----------------------------------------------------------------------
+
+Calls sidebar-page.php:
+<?php get_sidebar('page'); ?>
+
+
+
+-----------------------------------------------------------------------
+6.1
+-----------------------------------------------------------------------
+
+<div id="footerSidebar">
+
+<?php
+
+get_sidebar( 'footer' );
+
+?>
+
+</div>
+
+Copyright &copy;
+
+// The current year
+<?php echo date("Y"); ?>
+
+// Link home
+<a href="<?php echo get_option('home') ?>/" title="<?php bloginfo('name') ?>" rel="home"><?php bloginfo('name'); ?></a>
+
+
+
+-----------------------------------------------------------------------
+6.2
+-----------------------------------------------------------------------
+
+Calls footer-page.php:
+<?php get_footer('page'); ?> 
+
+
+
+-----------------------------------------------------------------------
+7.1
+-----------------------------------------------------------------------
+
+// Set default Featured Image sizes
+add_image_size('small', 75, 75, true);
+add_image_size('medium', 280, 280, true);
+add_image_size('large', 616, 462, true);
+
+
+
+-----------------------------------------------------------------------
+7.2
+-----------------------------------------------------------------------
+
+<div class="featuredImage">
+	<?php the_post_thumbnail('large'); ?>
+</div>
+
+<?php if (has_post_thumbnail() ) { ?>
+	<div class="featuredImage">
+		<?php the_post_thumbnail('large'); ?>
+	</div>
+<?php } ?>
+
+
+
+-----------------------------------------------------------------------
+8.2
+-----------------------------------------------------------------------
+
+Posted on <span class="date"><?php the_time('M j, Y'); ?></span>
+
+by <?php the_author_posts_link(); ?>.
+
+<?php if ( count( get_the_category() ) ) : ?>
+	<span class="cat-links">
+		<?php printf( __( '<span class="%1$s">Filed under</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) ); ?>
+	</span>
+	<span class="meta-sep">|</span>
+<?php endif; ?>
+<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'twentyten' ), __( '1 Comment', 'twentyten' ), __( '% Comments', 'twentyten' ) ); ?></span>
+
+
+
+-----------------------------------------------------------------------
+8.3
+-----------------------------------------------------------------------
+
+Regular index:
+<?php if (has_post_thumbnail() ) { ?>
+					<div class="featuredImage">
+						<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyten' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">
+							<?php the_post_thumbnail('medium'); ?>
+						</a>
+					</div>
+				<?php } ?>
+
+Archive and search:				
+<?php if (has_post_thumbnail() ) { ?>
+					<div class="featuredImage">
+						<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyten' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">
+							<?php the_post_thumbnail('small'); ?>
+						</a>
+					</div>
+				<?php } ?>
+
+
+
+-----------------------------------------------------------------------
+8.4
+-----------------------------------------------------------------------
+
+
+<?php
+	if ( is_home()) {
+	query_posts($query_string . '&cat=-17&posts_per_page=3' );
+	}
+?>
+
+
+
+-----------------------------------------------------------------------
+8.5
+-----------------------------------------------------------------------
+
+Create a loop:
+				<?php while ( have_posts() ) : the_post(); ?>
+				<h2><?php the_title(); ?></h2>
+				<?php endwhile; ?>
+
+				
+Add thumbnail:
+<?php if (has_post_thumbnail() ) { ?>
+						<div class="indexImage">
+							<?php the_post_thumbnail('medium'); ?>
+						</div>
+					<?php } ?>
+					
+Add link:
+<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyten' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">
+</a>
+					
+Make unordered list:
+<ul id="customCategory" class="group">
+
+(...)
+
+</ul>
+
+Make list items:
+<li>
+
+(...)
+
+</li>
+
+Nav below:
+<div id="nav-below" class="navigation">
+					<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'twentyten' ) ); ?></div>
+					<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'twentyten' ) ); ?></div>
+				</div><!-- #nav-below -->
+
+Complete loop:
+<ul id="customCategory" class="group">
+				<?php while ( have_posts() ) : the_post(); ?>
+					<li>
+						<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyten' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">						
+							<?php if (has_post_thumbnail() ) { ?>
+				
+								<div class="indexImage">
+									<?php the_post_thumbnail('medium'); ?>
+								</div>
+						
+							<?php } ?>
+							<h2><?php the_title(); ?></h2>
+						</a>
+					</li>
+				<?php endwhile; ?>
+				</ul>
+				
+
+
+-----------------------------------------------------------------------
+9.1
+-----------------------------------------------------------------------
+
+// Adds Twitter as an option under user profile
+function tnc_contactmethods( $contactmethods ) {
+    // Add Twitter
+    $contactmethods['twitter'] = 'Twitter';
+    return $contactmethods;
+}
+
+add_filter('user_contactmethods','tnc_contactmethods',10,1);
+
+Display Twitter handle: 
+<?php the_author_meta('twitter'); ?>
+
+
+
+-----------------------------------------------------------------------
+9.2
+-----------------------------------------------------------------------
+
+<?php if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
+<div class="profile">
+	<div class="profileText">
+		<?php the_author_meta('description'); ?>
+	</div> <!-- END .profileText -->
+	<div class="profileStats">
+		<?php if (function_exists('get_avatar')) { echo get_avatar( get_the_author_meta('email'), '80' ); }?>
+		<div class="profileName">
+			<?php the_author_posts_link(); ?> 
+		</div> <!-- END .profileName -->
+		<div class="profileJob">
+			<a href="<?php the_author_meta('user_url'); ?>" title="<?php the_author_meta('first_name'); ?>'s website"><?php the_author_meta('first_name'); ?>'s website</a><br />
+Follow <?php the_author_meta('first_name'); ?> on <a href="http://www.twitter.com/<?php the_author_meta('twitter'); ?>" title="Twitter name: <?php the_author_meta('twitter'); ?>">Twitter</a>
+		</div> <!-- END .profileJob -->
+	</div> <!-- END .profileStats -->
+</div> <!-- END .profile -->
+<?php endif; ?>
+
+
+
+-----------------------------------------------------------------------
+9.3
+-----------------------------------------------------------------------
+
+<?php
+
+// Inserts a box with the two most recent posts from the same category as the current post
+
+?>
+<?php
+	$backup = $post; // backup current object
+	$current = $post->ID; // current page ID
+
+	global $post;
+	$thisCat = get_the_category(); // gets the current categori(es)
+	$currentCategory = $thisCat[0]->cat_ID; // gets the primary category
+	$stepper = 1; // default value for the counter
+	$myposts = get_posts('numberposts=2&order=DESC&orderby=ID&category=' . $currentCategory . '&exclude=' . $current); // gets the two most recent posts from the current category excluding the current post
+	
+	$check = count($myposts); // Checks how many posts were returned by the query above
+	if ($check > 1 ) { // if there are two or more posts then...
+	?> 
+		<div id="recent">Recent Related Posts</div>
+		<div id="related" class="group">
+			<?php 
+				foreach($myposts as $post) : setup_postdata($post); // The Loop
+			?>
+				<div class="story<?php echo $stepper ?>">
+					<h2><a href="<?php the_permalink() ?>" title="<?php the_title() ?>" rel="bookmark"><?php the_title() ?></a></h2>
+					<div class="date"><?php the_time('F j, Y'); ?></div>
+					<div class="theExcerpt">
+					<?php if (has_post_thumbnail() ) { ?>
+						<div class="relatedThumb">
+							<a href="<?php the_permalink() ?>" title="<?php the_title() ?>" rel="bookmark">
+								<?php the_post_thumbnail('small'); ?>
+							</a>
+						</div>
+					<?php } ?>
+					<?php the_excerpt(); ?>
+				</div>
+			</div>
+			<?php
+				$stepper = ($stepper+1); // stepper + 1
+				endforeach; 
+			?> 
+			<?php
+				$post = $backup; //restore current object
+				wp_reset_query();
+			?>
+		</div><!-- #related -->
+<?php } ?>
+
+
+To call:
+<?php get_template_part( 'related' ); ?>
+
+
+
+-----------------------------------------------------------------------
+9.4
+-----------------------------------------------------------------------
+
+Show/hide button:
+<div class="hider">
+	<a href="#" title="Show/hide author and related info">Hide &uarr;</a>
+</div>
+
+Wrap content you want to hide in two divs:
+<div id="metaHideContainer">
+<div id="metaHide">
+
+<!-- Content goes here -->
+
+</div><!-- END #metaHide -->
+</div><!-- END #metaHideContainer-->
+
+For hider.js:
+// Hide and show author box and comments
+jQuery(document).ready(function($){
+	$(".hider a").click(function(){
+		$("#metaHide").slideToggle('slow');
+		$(this).text($(this).text() == unescape('Show %u2193') ? unescape('Hide %u2191') : unescape('Show %u2193'));
+		return false;
+	});
+});
+
+For functions.php:
+// Adds a hide feature for the author box and related posts
+function tnc_hideMeta() {
+	if (!is_admin()) {
+		// register your script location, dependencies and version
+		wp_register_script('hide',
+			get_stylesheet_directory_uri() . '/js/hider.js',
+			array('jquery') );
+   // enqueue the script
+   wp_enqueue_script('hide');			
+	}
+}
+
+add_action('init', 'tnc_hideMeta');

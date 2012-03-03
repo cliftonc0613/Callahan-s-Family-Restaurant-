@@ -1,0 +1,620 @@
+/*
+Theme Name: Callhans Family Restuarant 
+Theme URI: URI to your theme
+Description: Twentyten child-theme designed for Callahans Family Restuarant
+Author: <a href="http://www.cliftontcanady.com/">Clifton T Canady</a>
+Version: 1.2.0
+Template: twentyten
+Tags: two-columns, left-sidebar, custom-header, custom-colors, custom-background, custom-menu, theme-options, threaded-comments, sticky-post, translation-ready, microformats, rtl-language-support, editor-style
+*/
+
+/* Imports all styles from the TwentyTen stylesheet */
+@import url('../twentyten/style.css');
+
+
+
+/* Changes the width of the header and shifts it 20px to the left */
+
+*{font-family: Arial, Helvetica, sans-serif;}
+/*-@font-face 
+ * ---------------------------------------------------------*/
+@font-face {
+    font-family: 'PacificoRegular';
+    src: local('PacificoRegular');
+    src: url('fonts/Pacifico-webfont.eot');
+    src: url('fonts/Pacifico-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Pacifico-webfont.woff') format('woff'),
+         url('fonts/Pacifico-webfont.ttf') format('truetype'),
+         url('fonts/Pacifico-webfont.svg#PacificoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {    
+font-family: 'CelticGaramondthe2nd';  
+src: local('CelticGaramondthe2nd');
+src: url('fonts/celtg___-webfont.eot');    
+src: url('fonts/celtg___-webfont.eot?#iefix') format('embedded-opentype'),         
+url('fonts/celtg___-webfont.woff') format('woff'),         
+url('fonts/celtg___-webfont.ttf') format('truetype'),         
+url('fonts/celtg___-webfont.svg#CelticGaramondthe2ndRegular') format('svg');    
+font-weight: normal;    
+font-style: normal;
+}
+
+@font-face {    
+font-family: 'CelticHand'; 
+src: local('CelticHand');   
+src: url('fonts/celtichd-webfont.eot');    
+src: url('fonts/celtichd-webfont.eot?#iefix') format('embedded-opentype'),         
+url('fonts/celtichd-webfont.woff') format('woff'),         
+url('fonts/celtichd-webfont.ttf') format('truetype'),         
+url('fonts/celtichd-webfont.svg#CelticHandRegular') format('svg');    
+font-weight: normal;    
+font-style: normal;
+}
+
+@font-face {    
+font-family: 'Stonehenge';    
+src: local('Stonehenge'); 
+src: url('fonts/stonehen-webfont.eot');    
+src: url('fonts/stonehen-webfont.eot?#iefix') format('embedded-opentype'),         
+url('fonts/stonehen-webfont.woff') format('woff'),         
+url('fonts/stonehen-webfont.ttf') format('truetype'),         
+url('fonts/stonehen-webfont.svg#StonehengeRegular') format('svg');    
+font-weight: normal;    
+font-style: normal;
+}
+
+
+
+
+html {
+	background-color: #006600;
+	background-image: url(images/bg.png);
+}
+body { position:relative;background-color: #006600;
+	background-image: url(images/bg.png)}
+
+body { position:relative;}
+
+article, aside, figure, footer, header, nav, section {display: block;}
+
+#access .menu-header,
+div.menu,
+#colophon,
+#branding,
+#main,
+#wrapper {
+	margin: 0 auto;
+	width: 800px;
+}
+
+#uc-wrapper {
+	padding: 0 ;
+	margin: 0 auto;
+	width: 700px;
+	margin: 15px auto;
+	z-index:-1;
+}
+
+#wrapper {
+	background: #bce08a;
+	padding: 0 ;
+	margin: 50px auto;
+	z-index:-1;
+}
+
+#main {position:relative;}
+
+#header {
+	padding: 0;
+	margin: 0 px;
+	background: #bce08a;
+	width: 800px;
+	top: 30px;
+}
+
+/* Sets the width of the header content */
+#branding {
+	width: 800px;
+}
+
+/* Positions the branding image */
+#branding img {
+	position: absolute;
+	top: 38px;
+	left: 0;
+	border-top: none;
+	border-bottom: none;
+	float: none;
+	z-index: 0;
+}
+
+/* Gives the branding image a reference to position based on and sets the overall height */
+#masthead {
+position: relative;
+height: 248px;
+}
+
+/* Lifts the site title to the top and changes its position and appearance */
+#site-title {
+	position: absolute;
+	margin: 0;
+	float:none;
+	top: 170px;
+	left: 20px;
+	font-size: 40px;
+	z-index: 10;
+}
+
+/* Lifts the site description to the top and changes its position and appearance */
+#site-description {
+	float: none;
+	font-style: normal;
+	margin: 0;
+	position: absolute;
+	color: #ffffff;
+	text-transform: uppercase;
+	top: 150px;
+	left: 20px;
+	width: 100%;
+	z-index: 10;
+}
+
+#site-info {
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	width: 700px;
+	padding: 0 0 0 10px;
+}
+
+#footer-nav {
+	text-align:center;
+	padding-bottom: 5px;
+	background: #bce08a;
+	width: 100%;
+	text-transform:uppercase;
+}
+
+#footer {
+	width: 800px;
+	text-transform:uppercase;
+	color: #bce08a;
+	letter-spacing:3px;
+	font-size: 12px;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+blockquote
+{
+	font-family: 'Stonehenge',Arial, Helvetica, Sans-Serif;
+	border: solid 1px #BBC9A6;
+	margin: 10px 10px 10px 50px;
+	padding: 2px 2px 2px 30px;
+	background-color: #DFEFAE;
+	background-image: url('images/postquote.png');
+	background-position: left top;
+	background-repeat: no-repeat;/* makes blockquote not to align behind the image if they are in the same line */
+	overflow: auto;
+}
+
+ blockquote,
+ blockquote a,
+ blockquote a:link,
+ blockquote a:visited,
+ blockquote a:hover{
+  color: #31841A;
+  font-family: 'Stonehenge',Arial, Helvetica, Sans-Serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
+#quote {
+	width: 50%;
+	float: left;
+}
+
+#copyright {
+	width: 50%;
+	float: right;
+	text-align:right;
+}
+
+a:link {
+	color: #fff;
+}
+a:visited {
+	color: #fff;
+}
+a:active,
+a:hover {
+	color: #bce08a;
+}
+
+/*--- Start of Main Navigation ---*/
+#access {
+	background: #bce08a;
+	display: block;
+	float: left;
+	margin: 0 auto;
+	width: 800px;
+	text-align:center;
+	text-transform:uppercase;	
+}
+/*
+#access a {
+    color: #BCE08A;
+	display: block;
+	line-height: 38px;
+	width: 100px;
+	padding: 0 9px;
+	text-decoration: none;
+	font-size: 11px;
+}
+*/
+#access a {
+color: #BCE08A;
+display: block;
+width:90px;
+line-height: 38px;
+padding: 0 10px;
+text-decoration: none;
+font-size: 11px;
+}
+
+#access li:hover > a, #access ul ul :hover > a {
+	background: #C9B78C;
+	color: white;
+}
+
+#access .menu-header ul,
+ul.menu  li { background-color:#5b8705; margin-right: 1px; }
+#access .menu-header ul,
+ul.menu  li:nth-child(2) a { background-color:#407205; }
+#access .menu-header ul,
+ul.menu  li:nth-child(3) a { background-color:#66bc29}
+#access .menu-header ul,
+ul.menu  li:nth-child(4) a { background-color:#719a55}
+#access .menu-header ul,
+ul.menu  li:nth-child(5) a { background-color:#5a8e22}
+#access .menu-header ul,
+ul.menu  li:nth-child(6) a { background-color:#7caf43; }
+
+#access .menu-header li,
+ul.menu li {float: left; position: relative;
+}
+
+/*--- End of Main Navigation ---*/
+
+/*Navigation*/
+nav ul {
+	list-style: none;
+	
+}
+
+nav ul.dropdown li a {
+display: block;
+padding: 7px 14px;
+margin: 0 0 5px 0;
+}
+
+nav ul li a { 
+	display: block;
+	padding: 5px 5px 5px 25px;
+	color: white;
+	font-size:12px;
+	text-decoration: none;
+	background-color:#728c40;
+}
+
+
+
+nav ul li:nth-child(2) a { background-color:#407205;}
+nav ul li:nth-child(3) a { background-color:#66bc29;}
+nav ul li:nth-child(4) a { background-color:#719a55;}
+nav ul li:nth-child(5) a { background-color:#5a8e22;}
+nav ul li:nth-child(6) a { background-color:#7caf43;}
+nav ul li:nth-child(7) a { background-color:#66bc29;}
+nav ul li:nth-child(8) a { background-color:#407205;}
+nav ul li:nth-child(9) a { background-color:#719a55;}
+nav ul li:nth-child(10) a { background-color:#5a8e22;}
+nav ul li:nth-child(11) a { background-color:#407205;}
+
+
+/* End of Menu Page Template */
+
+
+/*Clearfix code i am using */
+/* full clearfix */
+/* add to floating elements which shall clear floating after themselves */ 
+	* html .clearfix {
+	    height: 1%; /* IE5-6 */
+	    }
+	*+html .clearfix {
+		display: inline-block; /* IE7not8 */
+		}
+	.clearfix:after { /* FF, IE8, O, S, etc. */
+	    content: ".";
+	    display: block;
+	    height: 0;
+	    clear: both;
+	    visibility: hidden;
+	    }
+/*End of Clearfix*/
+
+#logo {
+	background-image: url(images/Shamrock150.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	height: 150px;
+	width: 150px;
+	right: -70px;
+	top: -70px;
+	z-index: 1;
+}
+
+#colophon {
+border-top: 0px solid black;
+margin-top: -4px;
+overflow: hidden;
+padding: 18px 0;
+}
+
+#sidebar-left  {float:left; width: 255px; padding: 50px 0 0 0; }
+#sidebar-left-regular  {float:left; width: 235px; padding: 50px 0 0 0; }
+
+#container {
+	float:right;
+	margin: 50px -240px 0 0;
+	width: 95%;
+}
+
+#menu-container {
+	position: relative;
+	float: right;
+	margin: 175px -240px 0 0;
+	width: 95%;
+}
+
+one-column-container {
+	float:right;
+	margin: 50px -240px 0 0;
+	width: 100%;
+}
+
+#menu-page {
+	
+}
+
+
+/* END OF MENU -----------------------------------------------*/
+
+
+.widget_search #s {/* This keeps the search inputs in line */
+	width: 60%;
+}
+.widget_search_menu #s {/* This keeps the search inputs in line */
+	width: 60%;
+	margin: 10px;
+}
+
+.widget_search label {
+	display: none;
+}
+
+#primary, #secondary {
+	float: left;
+	overflow: hidden;
+	width: 220px;
+	padding: 20px;
+}
+
+.entry-title a:link, .entry-title a:visited {
+font-family: 'CelticGaramondthe2nd';
+color: #360;
+text-decoration: none;
+}
+
+ .entry-title a:hover {
+font-family: 'CelticGaramondthe2nd';
+color: #539702;
+}
+/*-Content
+ *------------------------------------------------------------ */
+
+#content,
+#content input,
+#content textarea {
+	color: #347b0b;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+#content h1,
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6 {
+	color: #385328;
+	line-height: 1.5em;
+	margin: 0 0 20px 0;
+}
+
+#content h1,h2 {
+	font-family: 'CelticGaramondthe2nd', Arial, Helvetica, sans-serif;
+}
+
+#content table {
+	margin: 0 -1px 24px 0;
+	text-align: left;
+	width: 100%;
+}
+#content tr th,
+#content thead th {
+	color: #888;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 18px;
+	padding: 9px 24px;
+}
+#content tr td {
+	padding: 6px 24px;
+}
+.entry-content fieldset {
+	border:dotted;
+	margin: 0 0 24px 0;
+	padding: 24px;
+}
+
+
+
+#page-header {	
+	font-family: 'CelticGaramondthe2nd';
+        width: 500px;
+	right:240px;
+	top: -125px;
+	position:absolute;
+	background: url(images/page-header-bg.jpg);
+}
+
+
+
+#page-header .entry-title {
+	color: #BCE08A !important;
+	font-weight: normal !important;
+	text-align: left !important;
+	line-height: 1 !important;
+	text-shadow: 2px 2px 1px gray !important;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	padding-left: 40px;
+}
+
+#content .entry-title {
+	color: #363;
+	font-size: 21px;
+	font-weight: bold;
+	line-height: 1.3em;
+	margin-bottom: 0;
+	text-shadow: 2px 2px 2px #333;
+	letter-spacing:2px;
+}
+
+
+
+
+/*MENU ITEMS
+-----------------------------------------------------*/
+
+.item-wrapper {
+	font-size:12px;
+	width: 90%;
+	margin: 20px 0 0px 5px;
+	font-weight:bold;
+	text-shadow: 2px 2px 2px #ccc;
+	}
+	
+.item-container {
+	height:20px;
+	text-transform:uppercase;
+	border-bottom: 1px solid #666;
+}
+
+.item-wrapper1 {
+	font-size:12px;
+	width: 50%;
+	margin: 40px 0 0px 40px;
+	font-weight:bold;
+}
+.item-container1 {
+	height:10px;
+	text-transform:uppercase;
+	letter-spacing:1px;
+}
+
+.item-wrapper2 {
+	font-size:12px;
+	width: 90%;
+	margin: 40px 0 0px 5px;
+	font-weight:bold;
+	text-shadow: 2px 2px 2px #ccc;
+	}
+	
+.item-container2 {
+	height:20px;
+	text-transform:uppercase;
+}
+
+
+.item-regular {
+	width: 88%;
+	float: left;
+	color: #800;
+	text-shadow: 2px 1px 3px #666;
+	letter-spacing:3px;
+}
+
+.item-special {
+	width: 88%;
+	float: left;
+	color: #407205;;
+	text-shadow: 2px 1px 4px #666;
+	letter-spacing:3px;
+}
+.item-black {
+	width: 88%;
+	float: left;
+	color: black;;
+	text-shadow: 2px 1px 4px #666;
+	letter-spacing:3px;
+}
+
+.item-price {
+	width: 10%;
+	float: right;
+	color:#719a55;
+	text-align:right;
+}
+
+.item-desc {
+	color:black;
+	margin: 5px 0 0 0px;
+}
+
+.item-serving-size {
+	color:#666;
+}
+
+.menu-header-desc {
+	font-weight:bold;
+	color:#060;
+}
+
+/*Homepage Template content
+---------------------------------------------------------*/
+#homepage-content {
+	padding: 50px 0 50px 50px;
+	width: 450px;
+}
+
+#homepage-content p {
+	color: #347b0b;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+#feature_menu_items { margin-bottom: 75px;}
+
+#restaurant-photo {
+	float:right;
+	margin:25px
+}
